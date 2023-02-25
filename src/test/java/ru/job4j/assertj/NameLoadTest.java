@@ -58,4 +58,11 @@ class NameLoadTest {
                 .contains(names)
                 .contains("value");
     }
+
+    @Test
+    void checkCollectToMap() {
+        NameLoad nl = new NameLoad();
+        nl.parse("1=abc", "1=def");
+        assertThat(nl.getMap().get("1")).isEqualTo("abcdef");
+    }
 }
