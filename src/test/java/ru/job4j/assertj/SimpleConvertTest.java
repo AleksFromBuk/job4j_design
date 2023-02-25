@@ -72,6 +72,6 @@ class SimpleConvertTest {
         assertThat(map).hasSize(5)
                 .containsKeys("5", "4", "3", "2", "1")
                 .containsValues(7, 4,  2, 0, 8)
-                .containsExactlyInAnyOrderEntriesOf(Map.of("1", 0 , "2", 2, "3", 4, "4", 7, "5", 8));
+                .containsExactlyInAnyOrderEntriesOf(Map.of("1", 0, "2", 2, "3", 4, "4", 7, "5", 8));
     }
 }
