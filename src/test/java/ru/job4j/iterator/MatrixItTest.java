@@ -112,6 +112,6 @@ class MatrixItTest {
             res.add(mit.next());
         }
         assertThat(res).hasSize(10)
-                .containsExactlyInAnyOrderElementsOf(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+                .containsExactlyElementsOf(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
     }
 }
