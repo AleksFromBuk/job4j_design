@@ -80,8 +80,9 @@ public class SimpleArrayList<T> implements SimpleList<T> {
             }
 
             final void checkForComodification() {
-                if (modCount != expectedModCount)
+                if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
+                }
             }
         };
     }
