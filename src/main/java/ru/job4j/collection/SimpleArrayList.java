@@ -13,11 +13,11 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public void add(T value) {
-        modCount++;
         if (size == container.length) {
             container = grow();
         }
         container[size++] = value;
+        modCount++;
     }
 
     private T[] grow() {
@@ -27,7 +27,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public T set(int index, T newValue) {
         Objects.checkIndex(index, size);
-        T oldValue = container[index];
+        T oldValue = get(index);
         container[index] = newValue;
         return oldValue;
     }
@@ -35,8 +35,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public T remove(int index) {
         Objects.checkIndex(index, size);
-        modCount++;
-        T res = container[index];
+        T res = get(index);
         System.arraycopy(
                 container, index + 1,
                 container,
@@ -44,6 +43,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
                 container.length - index - 1
         );
         container[--size] = null;
+        modCount++;
         return res;
     }
 
@@ -60,30 +60,26 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             int cursor = 0;
             final int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
-                checkForComodification();
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return cursor < size;
             }
 
             @Override
             public T next() {
-                checkForComodification();
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 return container[cursor++];
             }
 
-            final void checkForComodification() {
-                if (modCount != expectedModCount) {
-                    throw new ConcurrentModificationException();
-                }
-            }
         };
     }
 }
