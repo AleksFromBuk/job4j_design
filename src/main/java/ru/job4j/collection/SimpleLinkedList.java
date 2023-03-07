@@ -12,7 +12,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
 
     @Override
     public void add(E value) {
-        Node<E> service = serviceNode();
+        Node<E> service = head;
         if (size == 0) {
             head = new Node<>(value, null);
         } else {
@@ -28,18 +28,17 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
-        Node<E> service = serviceNode();
+        Node<E> service = head;
         for (int i = 0; i < index; i++) {
             service = service.next;
         }
-        modCount++;
         return service.item;
     }
 
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            Node<E> node = serviceNode();
+            Node<E> node = head;
             final int expectedModCount = modCount;
 
             @Override
@@ -72,7 +71,4 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
         }
     }
 
-    private Node<E> serviceNode() {
-        return head;
-    }
 }
