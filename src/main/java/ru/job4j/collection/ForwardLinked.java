@@ -30,7 +30,6 @@ public class ForwardLinked<T> implements Iterable<T> {
         for (int i = 0; i < index; i++) {
             service = service.next;
         }
-        modCount++;
         return service.item;
     }
 
