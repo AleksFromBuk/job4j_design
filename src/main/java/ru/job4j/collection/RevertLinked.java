@@ -20,19 +20,22 @@ public class RevertLinked<T> implements Iterable<T> {
     }
 
     public boolean revert() {
+        boolean res = false;
         if (head == null || head.next == null) {
-            return false;
+            res =  false;
+        } else {
+            Node<T> prev = null;
+            Node<T> curr = head;
+            while (curr != null) {
+                Node<T> next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            head = prev;
+            res = true;
         }
-        Node<T> prev = null;
-        Node<T> curr = head;
-        while (curr != null) {
-            Node<T> next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-        head = prev;
-        return true;
+        return res;
     }
 
     @Override
@@ -67,12 +70,4 @@ public class RevertLinked<T> implements Iterable<T> {
         }
     }
 
-    public static void main(String[] args) {
-        RevertLinked obj = new RevertLinked();
-        for (int i = 1; i <= 3; i++) {
-            obj.add(i);
-        }
-        boolean res = obj.revert();
-        System.out.println(res);
-    }
 }
