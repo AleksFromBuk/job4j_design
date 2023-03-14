@@ -9,33 +9,23 @@ import java.util.stream.Collectors;
 public class ListUtils {
     public static <T> void addBefore(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> iterator = list.listIterator();
-        while (iterator.hasNext()) {
-            if (iterator.nextIndex() == index) {
-                iterator.add(value);
-                break;
-            }
-            iterator.next();
-        }
+        ListIterator<T> iterator = list.listIterator(index);
+        iterator.add(value);
     }
 
     public static <T> void addAfter(List<T> list, int index, T value) {
         Objects.checkIndex(index + 1, list.size());
-        ListIterator<T> iterator = list.listIterator();
-        while (iterator.hasNext()) {
-            if (iterator.nextIndex() == index + 1) {
-                iterator.add(value);
-                break;
-            }
-            iterator.next();
-        }
+        ListIterator<T> iterator = list.listIterator(index + 1);
+        iterator.add(value);
     }
 
     public static <T> void removeIf(List<T> list, Predicate<T> filter) {
-        List<T> res = list.stream()
-                .filter(filter)
-                .collect(Collectors.toList());
-        list.retainAll(res);
+        ListIterator<T> iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            if (filter.test(iterator.next())) {
+                iterator.remove();
+            }
+        }
     }
 
     public static <T> void replaceIf(List<T> list, Predicate<T> filter, T value) {
@@ -48,9 +38,11 @@ public class ListUtils {
     }
 
     public static <T> void removeAll(List<T> list, List<T> elements) {
-        List<T> res = list.stream()
-                .filter(o -> !elements.contains(o))
-                .collect(Collectors.toList());
-        list.retainAll(res);
+        ListIterator iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            if (elements.contains(iterator.next())) {
+                iterator.remove();
+            }
+        }
     }
 }

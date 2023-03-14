@@ -40,7 +40,7 @@ class ListUtilsTest {
     void whenRemoveIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
         assertThat(input).hasSize(10).containsSequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-        List<Integer> expected = Arrays.asList(0, 2, 4, 6, 8);
+        List<Integer> expected = Arrays.asList(1, 3, 5, 7, 9);
         ListUtils.removeIf(input, a -> a % 2 == 0);
         assertThat(input).containsExactlyElementsOf(expected);
     }
