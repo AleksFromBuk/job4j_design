@@ -20,9 +20,8 @@ public class SimpleSet<T> implements Set<T> {
     @Override
     public boolean contains(T element) {
         boolean f = false;
-        Iterator<T> iterator = set.iterator();
-        while (iterator.hasNext()) {
-            if (Objects.equals(iterator.next(), element)) {
+        for (int i = 0; i < set.size(); i++) {
+            if (Objects.equals(set.get(i), element)) {
                 f = true;
                 break;
             }
