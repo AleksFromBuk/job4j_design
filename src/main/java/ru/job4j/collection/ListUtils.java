@@ -2,9 +2,9 @@ package ru.job4j.collection;
 
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import static java.util.Objects.checkIndex;
 
 public class ListUtils {
     public static <T> void addBefore(List<T> list, int index, T value) {
@@ -36,12 +36,6 @@ public class ListUtils {
     }
 
     public static <T> void removeAll(List<T> list, List<T> elements) {
-        removeIf(list, t -> elements.contains(t));
-    }
-
-    private static void checkIndex(int index, int size) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+        removeIf(list, elements::contains);
     }
 }
