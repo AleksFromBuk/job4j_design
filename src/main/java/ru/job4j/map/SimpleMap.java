@@ -43,14 +43,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
         capacity = capacity << 1;
         MapEntry<K, V>[] newTab = new MapEntry[capacity];
         for (int j = 0; j < oldCap; j++) {
-            if (table[j] == null) {
-                continue;
+            if (table[j] != null) {
+                MapEntry<K, V> add = new MapEntry<>(table[j].key, table[j].value);
+                newTab[indexFor(Objects.hashCode(add.key))] = add;
+                table[j].key = null;
+                table[j].value = null;
+                table[j] = null;
             }
-            MapEntry<K, V> add = new MapEntry<>(table[j].key, table[j].value);
-            newTab[indexFor(Objects.hashCode(add.key))] = add;
-            table[j].key = null;
-            table[j].value = null;
-            table[j] = null;
         }
         table = newTab;
     }
@@ -72,7 +71,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         int index = getIndex(key);
         boolean res = false;
         if (table[index] != null) {
-            if (checkKeysEquals(table[index], key))  {
+            if (checkKeysEquals(table[index], key)) {
                 table[index].key = null;
             }
             table[index].value = null;
