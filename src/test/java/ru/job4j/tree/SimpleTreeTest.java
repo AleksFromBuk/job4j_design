@@ -35,4 +35,41 @@ class SimpleTreeTest {
         assertThat(tree.add(2, 6)).isFalse();
     }
 
+    @Test
+    void whenIsBinaryAndOnlyTwoChild() {
+        SimpleTree<Integer> tree = new SimpleTree<>(7);
+        for (int i = 1; i <= 2; i++) {
+            tree.add(7, i);
+        }
+        int cnt = 3;
+        for (int i = 1; i <= 2; i++) {
+            for (int j = 1; j <= 2; j++) {
+                tree.add(i, cnt++);
+            }
+        }
+        assertThat(tree.isBinary()).isTrue();
+    }
+
+    @Test
+    void whenIsBinaryTwoAndOneChild() {
+        SimpleTree<Integer> tree = new SimpleTree<>(7);
+        for (int i = 1; i <= 2; i++) {
+            tree.add(7, i);
+        }
+        int cnt = 3;
+        for (int i = 1; i <= 2; i++) {
+            tree.add(i, cnt++);
+        }
+        assertThat(tree.isBinary()).isTrue();
+    }
+
+    @Test
+    void whenIsNotBinaryTree() {
+        SimpleTree<Integer> tree = new SimpleTree<>(7);
+        for (int i = 1; i <= 3; i++) {
+            tree.add(7, i);
+        }
+        assertThat(tree.isBinary()).isFalse();
+    }
+
 }
