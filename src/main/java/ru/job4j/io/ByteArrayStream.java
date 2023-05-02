@@ -26,7 +26,7 @@ public class ByteArrayStream {
         outStream.writeBytes(bytes2);
         /*вывод на консоль содержимого внутреннего буффера объекта outStream*/
         for (byte it : outStream.toByteArray()) {
-            System.out.print((char)it);
+            System.out.print((char) it);
         }
         try (FileOutputStream fileOutput = new FileOutputStream("data/message.txt")) {
             outStream.writeTo(fileOutput);
