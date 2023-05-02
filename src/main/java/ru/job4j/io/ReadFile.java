@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 
 public class ReadFile {
     public static void main(String[] args) {
@@ -14,7 +15,7 @@ public class ReadFile {
             for (String line : lines) {
                 System.out.println(line);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
