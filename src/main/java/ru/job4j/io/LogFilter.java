@@ -18,8 +18,8 @@ public class LogFilter {
                     .filter(arr -> "404".equals(arr[arr.length - 2]))
                     .map(arr -> (Arrays.stream(arr)
                                 .reduce(str,
-                                        (a, b) -> new StringBuilder(a).append(" ").append(new StringBuilder(b)),
-                                        (a, b) -> a.append(b))).toString())
+                                        (a, b) -> new StringBuilder(a).append(" ").append(b),
+                                        StringBuilder::append)).toString())
                     .collect(Collectors.toList());
 
         } catch (IOException e) {
