@@ -13,7 +13,7 @@ public class LogFilter {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             data = in.lines()
                     .filter(str ->
-                            str.split(" ")[str.split(" ").length - 2].equals("404"))
+                            "404".equals(str.split(" ")[str.split(" ").length - 2]))
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
