@@ -45,9 +45,7 @@ public class LogFilter {
         try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(
                         new FileOutputStream(file)))) {
-            for (String it : log) {
-                out.printf("%s%n", it);
-            }
+            log.forEach(out::println);
         } catch (IOException e) {
             e.printStackTrace();
         }
