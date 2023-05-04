@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -18,13 +17,11 @@ public class Config {
 
     public void load() throws IllegalArgumentException {
         try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
-            List<String> data = in.lines()
-                    .filter(str -> str.length() != 0 && str.charAt(0) != '#')
-                    .toList();
-            for (String it : data) {
-                String[] tmp = processing(it);
-                this.values.put(tmp[0], tmp[1]);
-            }
+            in.lines()
+                    .filter(str -> !str.isBlank() && !str.startsWith("#"))
+                    .map(str -> str.split("=", 2))
+                    .filter(Config::checkProcessing)
+                    .forEach(arr -> this.values.put(arr[0], arr[1]));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,16 +45,15 @@ public class Config {
         return out.toString();
     }
 
-    private static String[] processing(String str) throws IllegalArgumentException {
-        String[] tmp = str.split("=", 2);
-        if (tmp.length == 0 || tmp[0].length() == 0 || tmp[1].length() == 0) {
-            throw new IllegalArgumentException("message");
+    private static boolean checkProcessing(String[] str) throws IllegalArgumentException {
+        if (str.length != 2 || str[0].isBlank() || str[1].isBlank()) {
+            throw new IllegalArgumentException("".equals(str[0] + str[1]) ? "string isBlank" : str[0] + str[1]);
         }
-        return tmp;
+        return true;
     }
 
     public static void main(String[] args) {
-        Config obj =  new Config("data/app.properties");
+        Config obj = new Config("data/app.properties");
         obj.load();
         try {
             System.out.println(obj.value("hibernate.dialect"));
