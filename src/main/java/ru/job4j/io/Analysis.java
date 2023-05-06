@@ -15,14 +15,12 @@ public class Analysis {
                             save(target, arr[1] + ";");
                         } else if (f[0] && processClose.test(arr[0])) {
                             f[0] = false;
-                            save(target, arr[1] + System.lineSeparator());
+                            save(target, arr[1] + ";" + System.lineSeparator());
                         }
                     });
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private static Predicate<String> processOpen = s -> "400".equals(s) || "500".equals(s);
