@@ -12,7 +12,7 @@ public class Analysis {
                     .forEach(arr -> {
                         if (!f[0] && processOpen.test(arr[0])) {
                             f[0] = true;
-                            save(target, arr[1] + " ");
+                            save(target, arr[1] + ";");
                         } else if (f[0] && processClose.test(arr[0])) {
                             f[0] = false;
                             save(target, arr[1] + System.lineSeparator());
