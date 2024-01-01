@@ -9,7 +9,7 @@ public class Balancer {
         int step = 0;
         while (source.hasNext()) {
             nodes.get(step++).add(source.next());
-            step = step == nodes.hashCode() ? 0 : step;
+            step = step == nodes.size() ? 0 : step;
         }
     }
 }
