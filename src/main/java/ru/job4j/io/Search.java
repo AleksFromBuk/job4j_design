@@ -11,8 +11,24 @@ import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
-        search(start, p -> p.toFile().getName().endsWith(".java")).forEach(System.out::println);
+        checkParam(args);
+        Path start = Paths.get(args[0]);
+        search(start, p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
+    }
+
+    private static void checkParam(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException(System.lineSeparator()
+                    + "1. Root folder is null. Usage  ROOT_FOLDER."
+                    + System.lineSeparator()
+                    + "2. enter the extension of the files you want to search");
+        } else if (args.length == 1) {
+            throw new IllegalArgumentException(System.lineSeparator()
+                    + "The second command line argument required to specify file extensions is not specified");
+        }
+        if (!args[1].contains(".")) {
+            args[1] = "." + args[1];
+        }
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
