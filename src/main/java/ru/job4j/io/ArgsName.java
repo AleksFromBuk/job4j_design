@@ -15,7 +15,7 @@ public class ArgsName {
 
     private void parse(String[] args) {
         for (String it : args) {
-            String[] tmpIt =  it.substring(1).split("=", 2);
+            String[] tmpIt = it.substring(1).split("=", 2);
             values.put(tmpIt[0], tmpIt[1]);
         }
     }
@@ -25,16 +25,18 @@ public class ArgsName {
             throw new IllegalArgumentException("Arguments not passed to program");
         }
         for (String it : args) {
-            if (it.charAt(0) != '-') {
+            if (!it.startsWith("-")) {
                 throw new IllegalArgumentException("Error: This argument '" + it + "' does not start with a '-' character");
-            } else if (!it.contains("=")) {
+            }
+            if (!it.contains("=")) {
                 throw new IllegalArgumentException("Error: This argument '" + it + "' does not contain an equal sign");
             }
             String tmp = it.substring(1);
             String[] tmpIt = tmp.split("=", 2);
             if (tmpIt[0].length() == 0) {
                 throw new IllegalArgumentException("Error: This argument '" + it + "' does not contain a key");
-            } else if (tmpIt.length == 1 || "".equals(tmpIt[1])) {
+            }
+            if (tmpIt[1].isBlank()) {
                 throw new IllegalArgumentException("Error: This argument '" + it + "' does not contain a value");
             }
         }
