@@ -33,7 +33,7 @@ public class ArgsName {
             }
             String tmp = it.substring(1);
             String[] tmpIt = tmp.split("=", 2);
-            if (tmpIt[0].length() == 0) {
+            if (tmpIt[0].isBlank()) {
                 throw new IllegalArgumentException("Error: This argument '" + it + "' does not contain a key");
             }
             if (tmpIt[1].isBlank()) {
