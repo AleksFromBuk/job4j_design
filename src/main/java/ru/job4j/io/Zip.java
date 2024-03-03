@@ -9,7 +9,16 @@ import java.util.zip.ZipOutputStream;
 
 public class Zip {
     public void packFiles(List<Path> sources, File target) {
-        sources.forEach(source -> packSingleFile(source.toFile(), target));
+        try (ZipOutputStream zip = new ZipOutputStream(
+                new BufferedOutputStream(new FileOutputStream(target))
+        )) {
+            for (Path it : sources) {
+                zip.putNextEntry(new ZipEntry(it.toFile().getPath()));
+                zip.write(new BufferedInputStream(new FileInputStream(it.toFile())).readAllBytes());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void packSingleFile(File source, File target) {
