@@ -43,8 +43,8 @@ public class ArgsName {
     }
 
     public static ArgsName of(String[] args) {
-        ArgsName names = new ArgsName();
         dataValidation(args);
+        ArgsName names = new ArgsName();
         names.parse(args);
         return names;
     }
