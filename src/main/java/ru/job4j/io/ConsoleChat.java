@@ -40,16 +40,12 @@ public class ConsoleChat {
                 currentWord = userReader.readLine();
                 addToLog.accept(currentWord);
                 if (STOP.equals(currentWord)) {
-                    addToLog.accept(STOP);
                     while (!CONTINUE.equals(currentWord)) {
                         currentWord = userReader.readLine();
                         addToLog.accept(currentWord);
                     }
-                    currentAnswer = answers.get(i++);
-                } else {
-                    currentAnswer = answers.get(i++);
-                    readPhrases();
                 }
+                currentAnswer = answers.get(i++);
                 System.out.println(currentAnswer);
                 addToLog.accept(currentAnswer);
                 if (i == answers.size()) {
