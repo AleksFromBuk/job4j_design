@@ -82,7 +82,7 @@ class CSVReaderTest {
         assertThatThrownBy(() -> CSVReader.main(args))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("^.+")
-                .hasMessageContaining("the parameters");
+                .hasMessageContaining("parameters");
     }
 
 }

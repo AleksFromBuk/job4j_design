@@ -75,7 +75,7 @@ public class CSVReader {
         }
         String delimiter = argsName.get(DELIMITER);
         if (!(delimiter.contains(";") || delimiter.contains(",") || delimiter.contains(":"))) {
-            throw new IllegalArgumentException("invalid format for column delimiter: expected ';'");
+            throw new IllegalArgumentException("invalid format for column delimiter...");
         }
         String sourcePath = argsName.get(PATH);
         if (!Files.exists(Path.of(sourcePath))) {
