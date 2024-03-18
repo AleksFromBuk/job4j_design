@@ -63,26 +63,26 @@ class CSVReaderTest {
         assertThat(Files.readString(target.toPath())).isEqualTo(expected);
     }
 
-//    @Test
-//    void whenAreNoColumnsToFilterBy(@TempDir Path folder) throws Exception {
-//        String data = String.join(
-//                System.lineSeparator(),
-//                "name,age,last_name,education",
-//                "Tom,20,Smith,Bachelor",
-//                "Jack,25,Johnson,Undergraduate",
-//                "William,30,Brown,Secondary special"
-//        );
-//        File file = folder.resolve("source.csv").toFile();
-//        File target = folder.resolve("target.csv").toFile();
-//        String[] args = new String[] {
-//                "-path=" + file.getAbsolutePath(), "-delimiter=;",
-//                "-out=" + target.getAbsolutePath(), "-filter= qwerty"
-//        };
-//        Files.writeString(file.toPath(), data);
-//        assertThatThrownBy(() -> CSVReader.main(args))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageMatching("^.+")
-//                .hasMessageContaining("parameters");
-//    }
+    @Test
+    void whenAreNoColumnsToFilterBy(@TempDir Path folder) throws Exception {
+        String data = String.join(
+                System.lineSeparator(),
+                "name,age,last_name,education",
+                "Tom,20,Smith,Bachelor",
+                "Jack,25,Johnson,Undergraduate",
+                "William,30,Brown,Secondary special"
+        );
+        File file = folder.resolve("source.csv").toFile();
+        File target = folder.resolve("target.csv").toFile();
+        String[] args = new String[] {
+                "-path=" + file.getAbsolutePath(), "-delimiter=;",
+                "-out=" + target.getAbsolutePath(), "-filter= qwerty"
+        };
+        Files.writeString(file.toPath(), data);
+        assertThatThrownBy(() -> CSVReader.main(args))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("^.+")
+                .hasMessageContaining("parameters");
+    }
 
 }

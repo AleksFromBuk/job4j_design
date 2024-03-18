@@ -20,8 +20,8 @@ class ConfigTest {
         String path = "./data/more_eq_symbol.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("ключ")).isEqualTo("значение=1");
-        assertThat(config.value("ключ2")).isEqualTo("значение=");
+        assertThat(config.value("key")).isEqualTo("value=1");
+        assertThat(config.value("key2")).isEqualTo("value=");
     }
 
     @Test
