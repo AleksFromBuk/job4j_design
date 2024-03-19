@@ -60,10 +60,14 @@ public class CSVReader {
     }
 
     private static void saveDataCSV(List<String> data, String s) {
-        try (var writer = new PrintWriter(new FileWriter(s, forName("WINDOWS-1251"), true))) {
-            data.forEach(writer::print);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if ("stdout".equals(s)) {
+            data.forEach(System.out::print);
+        } else {
+            try (var writer = new PrintWriter(new FileWriter(s, forName("WINDOWS-1251"), true))) {
+                data.forEach(writer::print);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -110,7 +114,16 @@ public class CSVReader {
     }
 
     public static void main(String[] args) throws Exception {
+        if (args.length == 0) {
+            String[] testFotOutS = new String[]{"-path=C:\\Users\\user\\IdeaProjects\\job4j_design\\data\\forCSVReader.csv",
+                    "-delimiter=,",
+                    "-out=stdout",
+                    "-filter=name,age"};
+            ArgsName argsName = validateParams(testFotOutS);
+            handle(argsName);
+        }
         ArgsName argsName = validateParams(args);
         handle(argsName);
+
     }
 }
