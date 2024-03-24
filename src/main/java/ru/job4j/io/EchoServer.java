@@ -20,21 +20,21 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     output.write("HTTP/1.1 200 OK \r\n\r\n".getBytes());
                     String str = input.readLine();
+                    System.out.println(str);
                     String data = getMessage(str);
                     if (EXIT.equals(data)) {
                         server.close();
                         break;
-                    } else  {
+                    } else {
                         output.write(HELLO.equals(data) ? (HELLO + "\r\n\r\n").getBytes() : (data + "\r\n\n").getBytes());
                     }
                     output.flush();
-                    socket.close();
                 }
             }
         }
     }
 
     private static String getMessage(String string) {
-        return string.split("\\?")[1].split(" ")[0].split("=")[1];
+        return string.contains("=") ? string.split("\\?")[1].split(" ")[0].split("=")[1] : string;
     }
 }
