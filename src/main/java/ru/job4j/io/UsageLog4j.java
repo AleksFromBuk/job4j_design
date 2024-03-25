@@ -3,8 +3,9 @@ package ru.job4j.io;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UsageLog4j {
+import java.util.Scanner;
 
+public class UsageLog4j {
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public static void main(String[] args) {
@@ -31,5 +32,12 @@ public class UsageLog4j {
                 double: {},\s
                 boolean: {},\s
                 char: {}\s""", a, b, c, d, e, f, bool, symbol);
+        Scanner scan = new Scanner(System.in);
+        int tmpNumber = scan.nextInt();
+        try {
+            System.out.println(10 / tmpNumber);
+        } catch (ArithmeticException exc) {
+            LOG.error("Ошибка при выполнении арифметической операции...", exc);
+        }
     }
 }
