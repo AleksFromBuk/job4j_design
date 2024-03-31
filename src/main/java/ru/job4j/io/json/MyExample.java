@@ -13,14 +13,14 @@ public class MyExample implements Serializable {
     private final int number;
     private final String str;
     private final Person person;
-    private final Contact[] arr;
+    private final Contact[] contacts;
 
-    public MyExample(boolean flag, int number, String str, Person person, Contact[] arr) {
+    public MyExample(boolean flag, int number, String str, Person person, Contact[] contacts) {
         this.flag = flag;
         this.number = number;
         this.str = str;
         this.person = person;
-        this.arr = arr;
+        this.contacts = contacts;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MyExample implements Serializable {
                 + ", number=" + number
                 + ", str=" + str
                 + ", Person=" + person
-                + ", arr=" + Arrays.toString(arr)
+                + ", contacts=" + Arrays.toString(contacts)
                 + "}";
     }
 
@@ -51,7 +51,7 @@ public class MyExample implements Serializable {
         try (FileInputStream fis = new FileInputStream(tempFile);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
             final MyExample myExampleFromFile = (MyExample) ois.readObject();
-            System.out.println("\nобъект Person как результат сериализации: " + myExampleFromFile + '\n');
+            System.out.println("\nобъект MyExample как результат сериализации: " + myExampleFromFile + '\n');
         }
 
         /*Преобразуем объект person в json-строку*/
@@ -74,7 +74,7 @@ public class MyExample implements Serializable {
                         + "\"statuses\":"
                         + "[\"Worker\", \"Married\"]"
                         + "},"
-                        + "\"arr\":"
+                        + "\"contacts\":"
                         + "["
                         + "{"
                         + "\"phone\":\"11-111\""

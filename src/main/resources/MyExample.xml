@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<myExample flag="false" number="35" str="current value of String">
+    <person sex="true" age="31">
+        <contact phone="11-111"/>
+        <statuses>
+            <status>Worker</status>
+            <status>Married</status>
+        </statuses>
+    </person>
+    <contacts>
+        <contact>phone="11-111"</contact>
+        <contact>phone="22-222"</contact>
+    </contacts>
+</myExample>
