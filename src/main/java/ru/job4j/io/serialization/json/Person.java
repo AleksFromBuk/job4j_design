@@ -1,4 +1,4 @@
-package ru.job4j.io.json;
+package ru.job4j.io.serialization.json;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -11,7 +11,7 @@ public class Person implements Serializable {
     private final Contact contact;
     private final String[] statuses;
 
-    public Person(boolean sex, int age, Contact contact, String[] statuses) {
+    public Person(boolean sex, int age, Contact contact, String... statuses) {
         this.sex = sex;
         this.age = age;
         this.contact = contact;
@@ -26,6 +26,22 @@ public class Person implements Serializable {
                 + ", contact=" + contact
                 + ", statuses=" + Arrays.toString(statuses)
                 + '}';
+    }
+
+    public boolean getSex() {
+        return sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getContact() {
+        return contact.toString();
+    }
+
+    public String[] getStatuses() {
+        return statuses;
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {

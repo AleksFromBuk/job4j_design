@@ -1,4 +1,4 @@
-package ru.job4j.io.json;
+package ru.job4j.io.serialization.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,6 +32,26 @@ public class MyExample implements Serializable {
                 + ", Person=" + person
                 + ", contacts=" + Arrays.toString(contacts)
                 + "}";
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getStr() {
+        return str;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public String getContacts() {
+        return Arrays.toString(contacts);
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
