@@ -18,6 +18,10 @@ public class Contact implements Serializable {
                 + '}';
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         final Contact contact = new  Contact("+7 (111) 111 11 11");
 

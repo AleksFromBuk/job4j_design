@@ -50,8 +50,8 @@ public class MyExample implements Serializable {
         return person;
     }
 
-    public String getContacts() {
-        return Arrays.toString(contacts);
+    public Contact[] getContacts() {
+        return contacts;
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
