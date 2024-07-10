@@ -73,10 +73,6 @@ public class CSVReader {
 
     private static ArgsName validateParams(String[] args) {
         final ArgsName argsName = ArgsName.of(args);
-        String sourceTarget = argsName.get(OUT);
-        if (!("stdout".equals(sourceTarget) || Files.exists(Path.of(sourceTarget)) || sourceTarget.contains("Temp"))) {
-            throw new IllegalArgumentException("parameters for outputting file contents are set incorrectly");
-        }
         String delimiter = argsName.get(DELIMITER);
         if (!(delimiter.contains(";") || delimiter.contains(",") || delimiter.contains(":"))) {
             throw new IllegalArgumentException("invalid format for column delimiter...");
@@ -121,9 +117,9 @@ public class CSVReader {
                     "-filter=name,age"};
             ArgsName argsName = validateParams(testFotOutS);
             handle(argsName);
+        } else {
+            ArgsName argsName = validateParams(args);
+            handle(argsName);
         }
-        ArgsName argsName = validateParams(args);
-        handle(argsName);
-
     }
 }

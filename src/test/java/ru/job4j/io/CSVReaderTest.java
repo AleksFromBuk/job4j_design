@@ -84,5 +84,4 @@ class CSVReaderTest {
                 .hasMessageMatching("^.+")
                 .hasMessageContaining("parameters");
     }
-
 }
