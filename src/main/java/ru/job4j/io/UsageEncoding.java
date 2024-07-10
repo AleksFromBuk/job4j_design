@@ -30,15 +30,15 @@ public class UsageEncoding {
         String path = "C:\\Users\\user\\IdeaProjects\\job4j_design\\data\\text.txt";
         UsageEncoding encoding = new UsageEncoding();
         List<String> strings = List.of(
-                "Новая строка 1",
-                "Новая строка 2",
-                "Новая строка 3",
-                "Новая строка 4",
-                "Новая строка 5"
+                "РќРѕРІР°СЏ СЃС‚СЂРѕРєР° 1",
+                "РќРѕРІР°СЏ СЃС‚СЂРѕРєР° 2",
+                "РќРѕРІР°СЏ СЃС‚СЂРѕРєР° 3",
+                "РќРѕРІР°СЏ СЃС‚СЂРѕРєР° 4",
+                "РќРѕРІР°СЏ СЃС‚СЂРѕРєР° 5"
         );
         encoding.writeDataInFile(path, strings);
         String string = encoding.readFile(path);
-        System.out.println("Данные из файла: ");
+        System.out.println("Р”Р°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р°: ");
         System.out.println(string);
     }
 }

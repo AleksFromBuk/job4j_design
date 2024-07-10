@@ -21,15 +21,15 @@ alter table airport
     rename column erea to "area";
 
 insert into airport (code, country, city, area )
-values ('MNK', 'Беларусь', 'Минск', 10),
-       ('LDN', 'Англия', 'Лондон', 11),
-       ('MSK', 'Россия', 'Москва', 11),
-       ('BSL', 'Испания', 'Барселона', 6);
+values ('MNK', 'Р‘РµР»Р°СЂСѓСЃСЊ', 'РњРёРЅСЃРє', 10),
+       ('LDN', 'РђРЅРіР»РёСЏ', 'Р›РѕРЅРґРѕРЅ', 11),
+       ('MSK', 'Р РѕСЃСЃРёСЏ', 'РњРѕСЃРєРІР°', 11),
+       ('BSL', 'РСЃРїР°РЅРёСЏ', 'Р‘Р°СЂСЃРµР»РѕРЅР°', 6);
 
-update airport set country = 'Ангиля' where code = 'LDN';
+update airport set country = 'РђРЅРіРёР»СЏ' where code = 'LDN';
 
 select * from airport;
 
-delete from airport where country = 'Ангиля';
+delete from airport where country = 'РђРЅРіРёР»СЏ';
 
 select * from airport;
