@@ -96,7 +96,7 @@ values ('Philosophiae Naturalis Principia Mathematica', 'Isaac Newton', 1),
        ('Spiritual Psalter', 'Ephrem the Syrian', 1),
        ('Ascetical Homilies of Saint Isaac the Syrian', 'Isaac the Syrian', 1); 
 
-select b.name "Выдающийся труд", bs.number_of_shelf Полочка
+select b.name "Outstanding work", bs.number_of_shelf Shelf
 from books as b
          join shelfs_on_shkafs as bs on b.shelf_id = bs.id;
 
