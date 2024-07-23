@@ -78,10 +78,9 @@ values ('I', 1), -- Isaac Newton
        ('G', 4), -- Gottfried Wilhelm Leibniz
        ('J', 5), -- Jacob Bernoulli
        ('C', 6), -- Carl Friedrich Gauss
-       ('H', 7);
--- Henri Poincar?
+       ('H', 7); -- Henri Poincar?
 
--- Вставка данных в таблицу books
+
 insert into books(name, author, shelf_id)
 values ('Philosophiae Naturalis Principia Mathematica', 'Isaac Newton', 1),
        ('Discourse on the Method', 'Ren? Descartes', 3),
@@ -93,25 +92,25 @@ values ('Philosophiae Naturalis Principia Mathematica', 'Isaac Newton', 1),
        ('The Foundations of Science', 'Henri Poincar?', 7),
        ('Writings of Anthony the Great', 'Anthony the Great', 1),
        ('Homilies of St. Macarius the Great', 'Macarius of Egypt',
-        1),                                           -- Macarius starts with 'M', not explicitly mentioned but using shelf 'I'
-       ('Spiritual Psalter', 'Ephrem the Syrian', 1), -- Ephrem starts with 'E', but using shelf 'I'
-       ('Ascetical Homilies of Saint Isaac the Syrian', 'Isaac the Syrian', 1); -- Isaac starts with 'I'
+        1),
+       ('Spiritual Psalter', 'Ephrem the Syrian', 1),
+       ('Ascetical Homilies of Saint Isaac the Syrian', 'Isaac the Syrian', 1); 
 
 select b.name "Выдающийся труд", bs.number_of_shelf Полочка
 from books as b
          join shelfs_on_shkafs as bs on b.shelf_id = bs.id;
 
 
-select b.name             "не праздная литература",
-       b.author           "Выдающйся человек",
-       bs.number_of_shelf "Полочка для книги этого Выдающегося человека"
+select b.name             "literature for serious guys",
+       b.author           "Outstanding person",
+       bs.number_of_shelf "A shelf for a book by this Outstanding Man"
 from books as b
          join shelfs_on_shkafs as bs on b.shelf_id = bs.id;
 
 
-select b.name             "не праздная литература",
-       b.author           "Выдающйся человек",
-       bs.number_of_shelf "Полочка для книги этого Выдающегося человека"
+select b.name             "literature for serious guys",
+       b.author           "Outstanding person",
+       bs.number_of_shelf "A shelf for a book by this Outstanding Man"
 from books as b
          join shelfs_on_shkafs as bs on b.shelf_id = bs.id and (b.author like '%Anthony%' or b.author like '%Syrian%' or
                                                                 b.author like '%Macarius%');
