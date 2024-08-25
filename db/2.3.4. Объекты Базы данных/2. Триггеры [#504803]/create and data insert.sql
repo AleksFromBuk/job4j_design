@@ -190,3 +190,34 @@ execute procedure log_product_insertion();
 -- вставка данных в products для проверки работы триггера log_after_insert_in_products
 insert into products (name, producer, count, price)
 values ('Br. Mario', 'Nintendo', 3, 250);
+
+-- show triggers
+SELECT tg.tgname   AS trigger_name,
+       rel.relname AS table_name,
+       nsp.nspname AS schema_name
+FROM pg_trigger tg
+         JOIN
+     pg_class rel ON tg.tgrelid = rel.oid
+         JOIN
+     pg_namespace nsp ON rel.relnamespace = nsp.oid
+WHERE nsp.nspname = current_schema()
+  AND NOT tg.tgisinternal;
+--
+
+-- show enabled/disabled
+SELECT tg.tgname   AS trigger_name,
+       rel.relname AS table_name,
+       nsp.nspname AS schema_name,
+       CASE
+           WHEN tg.tgenabled = 'O' THEN 'ENABLED'
+           ELSE 'DISABLED'
+           END     AS trigger_status
+FROM pg_trigger tg
+         JOIN
+     pg_class rel ON tg.tgrelid = rel.oid
+         JOIN
+     pg_namespace nsp ON rel.relnamespace = nsp.oid
+WHERE nsp.nspname = current_schema()
+  AND NOT tg.tgisinternal
+  AND tg.tgenabled = 'O';
+--
